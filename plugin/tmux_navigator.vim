@@ -76,7 +76,7 @@ function! s:TmuxAwareNavigate(direction)
     if g:tmux_navigator_save_on_switch
       update
     endif
-    let args = 'select-pane -' . tr(a:direction, 'phjkl', 'lLDUR')
+    let args = 'run "#{select_pane_no_wrap} ' . tr(a:direction, 'phjkl', 'lLDUR').'"'
     silent call s:TmuxCommand(args)
     if s:NeedsVitalityRedraw()
       redraw!
